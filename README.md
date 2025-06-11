@@ -1,12 +1,19 @@
 # Log Monitoring App
 
-A Java application that analyzes job log events from a CSV file, calculates the duration of each job and generates a report file **('output.txt')** with severity levels based on job duration:
-- **ERROR** – if job takes over 10 minutes
-- **WARNING** – if job takes over 5 minutes
-- **INFO** – if job takes 5 minutes or less
+A Java application that analyzes job log events from a CSV file, calculates the duration of each job and generates a report file **('output.txt')** with severity levels based on job duration.
+
+## How It Works
+
+1. **Parses logs** from a CSV file containing `time`, `description`, `type` and `pid`.
+2. **Matches START and END events** for each PID.
+3. **Calculates job durations** using timestamps.
+4. **Categorizes each job** based on how long it took:
+    - Over **10 minutes** → `ERROR`
+    - Over **5 minutes** → `WARNING`
+    - Otherwise → `INFO`
+5. **Writes results** to `output.txt`.
 
 ## Usage
-
 1. Add your `logs.csv` file in the `resources/` directory.
 2. Run `Main.java`.
 3. Check `output.txt` for the generated report.
